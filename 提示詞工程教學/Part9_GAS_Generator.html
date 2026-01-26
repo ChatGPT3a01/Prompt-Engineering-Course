@@ -449,6 +449,23 @@
             opacity: 0.8;
         }
 
+        .copy-btn {
+            background: linear-gradient(135deg, #1976d2, #0d47a1);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .copy-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(13, 71, 161, 0.3);
+        }
+
         @media (max-width: 768px) {
             .container { padding: 80px 15px 30px; }
             .main-card { padding: 25px; }
@@ -570,57 +587,106 @@
 
             <!-- TTS 設定（條件顯示） -->
             <div class="conditional-section" id="ttsSection">
-                <h3>🔊 Google Cloud TTS 設定</h3>
+                <h3>🔊 語音合成設定</h3>
 
-                <!-- TTS 設定教學 -->
-                <div class="info-box" style="margin-bottom: 20px;">
-                    <h4>如何取得 Google Cloud API Key？</h4>
-                    <ol style="margin: 10px 0 0 20px; line-height: 1.8;">
-                        <li>前往 <a href="https://console.cloud.google.com/" target="_blank" style="color: #1976d2;">Google Cloud Console</a></li>
-                        <li>建立新專案（或選擇現有專案）</li>
-                        <li>點擊左側選單「API 和服務」→「已啟用的 API 和服務」</li>
-                        <li>點擊「+ 啟用 API 和服務」，搜尋「Cloud Text-to-Speech API」並啟用</li>
-                        <li>回到「API 和服務」→「憑證」</li>
-                        <li>點擊「+ 建立憑證」→「API 金鑰」</li>
-                        <li>複製產生的 API 金鑰，貼到下方欄位</li>
-                    </ol>
-                    <p style="margin-top: 10px; color: #e65100;"><strong>注意：</strong>Google Cloud TTS 每月有免費額度（約 100 萬字元），超過才需付費。</p>
+                <!-- TTS 方案選擇 -->
+                <p style="margin-bottom: 15px;">請選擇語音合成方案：</p>
+                <div class="feature-cards" style="grid-template-columns: repeat(2, 1fr); margin-bottom: 20px;">
+                    <div class="feature-card active" data-tts="cloud" onclick="selectTTSMethod('cloud')">
+                        <div class="icon">☁️</div>
+                        <div class="title">Google Cloud TTS</div>
+                        <div class="desc">生成 MP3 音檔，可下載分享</div>
+                        <div class="badge">需設定 API</div>
+                    </div>
+                    <div class="feature-card" data-tts="web" onclick="selectTTSMethod('web')">
+                        <div class="icon">🌐</div>
+                        <div class="title">Web Speech API</div>
+                        <div class="desc">網頁即時播放，完全免費</div>
+                        <div class="badge" style="background: #4caf50;">免費免設定</div>
+                    </div>
                 </div>
 
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Google Cloud API Key <span class="required">*</span>
-                            <span class="hint">從 Google Cloud Console 憑證頁面取得</span>
-                        </label>
-                        <input type="password" id="googleCloudKey" placeholder="請貼上你的 Google Cloud API Key">
+                <!-- Google Cloud TTS 設定 -->
+                <div id="cloudTTSSection">
+                    <div class="info-box" style="margin-bottom: 20px;">
+                        <h4>如何取得 Google Cloud API Key？</h4>
+                        <ol style="margin: 10px 0 0 20px; line-height: 1.8;">
+                            <li>前往 <a href="https://console.cloud.google.com/" target="_blank" style="color: #1976d2;">Google Cloud Console</a></li>
+                            <li>建立新專案（或選擇現有專案）</li>
+                            <li>點擊左側選單「API 和服務」→「已啟用的 API 和服務」</li>
+                            <li>點擊「+ 啟用 API 和服務」，搜尋「Cloud Text-to-Speech API」並啟用</li>
+                            <li>回到「API 和服務」→「憑證」</li>
+                            <li>點擊「+ 建立憑證」→「API 金鑰」</li>
+                            <li>複製產生的 API 金鑰，貼到下方欄位</li>
+                        </ol>
+                        <p style="margin-top: 10px; color: #e65100;"><strong>注意：</strong>每月有免費額度（約 100 萬字元），超過才需付費。</p>
                     </div>
-                    <div class="form-group">
-                        <label>Google Drive 資料夾 ID <span class="required">*</span>
-                            <span class="hint">用於存放生成的音檔（從資料夾網址取得）</span>
-                        </label>
-                        <input type="text" id="driveFolderId" placeholder="例如：1k4Tbtf8iqjc...">
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Google Cloud API Key <span class="required">*</span>
+                                <span class="hint">從 Google Cloud Console 憑證頁面取得</span>
+                            </label>
+                            <input type="password" id="googleCloudKey" placeholder="請貼上你的 Google Cloud API Key">
+                        </div>
+                        <div class="form-group">
+                            <label>Google Drive 資料夾 ID <span class="required">*</span>
+                                <span class="hint">用於存放生成的音檔（從資料夾網址取得）</span>
+                            </label>
+                            <input type="text" id="driveFolderId" placeholder="例如：1k4Tbtf8iqjc...">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>語音語言</label>
+                            <select id="ttsLanguage">
+                                <option value="zh-TW" selected>繁體中文（台灣）</option>
+                                <option value="zh-CN">簡體中文</option>
+                                <option value="en-US">英文</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>語音性別</label>
+                            <select id="ttsGender">
+                                <option value="FEMALE" selected>女聲</option>
+                                <option value="MALE">男聲</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>語音語言</label>
-                        <select id="ttsLanguage">
-                            <option value="zh-TW" selected>繁體中文（台灣）</option>
-                            <option value="zh-CN">簡體中文</option>
-                            <option value="en-US">英文</option>
-                        </select>
+
+                <!-- Web Speech API 說明 -->
+                <div id="webTTSSection" style="display: none;">
+                    <div class="info-box" style="background: linear-gradient(135deg, #e8f5e9, #c8e6c9); border-color: #4caf50;">
+                        <h4 style="color: #2e7d32;">Web Speech API 使用方式</h4>
+                        <p style="margin: 10px 0;"><strong>優點：</strong>完全免費、不需要任何 API Key、瀏覽器內建功能</p>
+                        <p style="margin: 10px 0;"><strong>限制：</strong>只能在網頁上即時播放，無法生成音檔下載</p>
+                        <p style="margin: 10px 0 15px;"><strong>適合：</strong>在評量網站上加入「播放評語」按鈕</p>
+
+                        <h4 style="color: #2e7d32; margin-top: 15px;">如何使用？</h4>
+                        <p>在你的評量網站 HTML 中加入以下程式碼：</p>
+                        <div style="background: #1e3a5f; color: #b3e5fc; padding: 15px; border-radius: 10px; margin: 10px 0; font-family: monospace; font-size: 13px; overflow-x: auto;">
+                            <pre style="margin: 0; white-space: pre-wrap;">&lt;!-- 播放按鈕 --&gt;
+&lt;button onclick="speakText('這裡放評語文字')"&gt;🔊 播放評語&lt;/button&gt;
+
+&lt;script&gt;
+function speakText(text) {
+  // 停止之前的播放
+  window.speechSynthesis.cancel();
+
+  // 建立語音物件
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = 'zh-TW';  // 繁體中文
+  utterance.rate = 1.0;      // 語速 (0.1-10)
+  utterance.pitch = 1.0;     // 音調 (0-2)
+
+  // 播放
+  window.speechSynthesis.speak(utterance);
+}
+&lt;/script&gt;</pre>
+                        </div>
+                        <button class="copy-btn" style="margin-top: 10px;" onclick="copyWebSpeechCode()">複製程式碼</button>
                     </div>
-                    <div class="form-group">
-                        <label>語音性別</label>
-                        <select id="ttsGender">
-                            <option value="FEMALE" selected>女聲</option>
-                            <option value="MALE">男聲</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="warning-box">
-                    <h4>暫時不需要語音功能？</h4>
-                    <p>可以先不勾選「語音合成 (TTS)」功能，之後有需要再加入即可。四字評語和文字評語功能不需要 Google Cloud。</p>
                 </div>
             </div>
 
@@ -731,6 +797,63 @@
 
         // AI 服務選擇
         let selectedProvider = 'gemini';
+
+        // TTS 方案選擇
+        let selectedTTSMethod = 'cloud';
+
+        function selectTTSMethod(method) {
+            selectedTTSMethod = method;
+
+            // 更新卡片樣式
+            document.querySelectorAll('.feature-card[data-tts]').forEach(card => {
+                card.classList.toggle('active', card.dataset.tts === method);
+            });
+
+            // 切換設定區塊顯示
+            const cloudSection = document.getElementById('cloudTTSSection');
+            const webSection = document.getElementById('webTTSSection');
+
+            if (method === 'cloud') {
+                cloudSection.style.display = 'block';
+                webSection.style.display = 'none';
+            } else {
+                cloudSection.style.display = 'none';
+                webSection.style.display = 'block';
+            }
+        }
+
+        function copyWebSpeechCode() {
+            const code = `<!-- 播放按鈕 -->
+<button onclick="speakText('這裡放評語文字')">🔊 播放評語</button>
+
+<script>
+function speakText(text) {
+  // 停止之前的播放
+  window.speechSynthesis.cancel();
+
+  // 建立語音物件
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = 'zh-TW';  // 繁體中文
+  utterance.rate = 1.0;      // 語速 (0.1-10)
+  utterance.pitch = 1.0;     // 音調 (0-2)
+
+  // 播放
+  window.speechSynthesis.speak(utterance);
+}
+<\/script>`;
+
+            navigator.clipboard.writeText(code).then(() => {
+                const btn = document.querySelector('#webTTSSection .copy-btn');
+                btn.textContent = '已複製！';
+                btn.style.background = '#4caf50';
+                btn.style.color = 'white';
+                setTimeout(() => {
+                    btn.textContent = '複製程式碼';
+                    btn.style.background = '';
+                    btn.style.color = '';
+                }, 2000);
+            });
+        }
 
         function selectProvider(provider) {
             selectedProvider = provider;
