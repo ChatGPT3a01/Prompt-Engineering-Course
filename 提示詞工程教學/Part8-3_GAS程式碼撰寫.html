@@ -382,7 +382,7 @@
 
                 <div class="code-box">
                     <button class="copy-btn" onclick="copyCode(this)">複製</button>
-<span class="comment">// ===== 設定區（請填入你的資料）=====</span>
+<pre><span class="comment">// ===== 設定區（請填入你的資料）=====</span>
 <span class="keyword">const</span> LINE_CHANNEL_ACCESS_TOKEN = <span class="string">'你的LINE Token'</span>;
 <span class="keyword">const</span> SPREADSHEET_ID = <span class="string">'你的試算表ID'</span>;
 <span class="keyword">const</span> SHEET_NAME = <span class="string">'作品記錄'</span>;
@@ -410,7 +410,7 @@
     <span class="function">console.error</span>(<span class="string">'doPost error:'</span>, error);
     <span class="keyword">return</span> ContentService.<span class="function">createTextOutput</span>(<span class="string">'Error'</span>);
   }
-}
+}</pre>
                 </div>
 
                 <div class="step-box">
@@ -431,7 +431,7 @@
 
                 <div class="code-box">
                     <button class="copy-btn" onclick="copyCode(this)">複製</button>
-<span class="comment">// ===== 處理收到的訊息 =====</span>
+<pre><span class="comment">// ===== 處理收到的訊息 =====</span>
 <span class="keyword">function</span> <span class="function">handleMessage</span>(event) {
   <span class="keyword">const</span> userId = event.source.userId;
   <span class="keyword">const</span> replyToken = event.replyToken;
@@ -471,7 +471,7 @@
     type,                    <span class="comment">// 訊息類型</span>
     content.<span class="function">substring</span>(0, 500) <span class="comment">// 內容（限制長度）</span>
   ]);
-}
+}</pre>
                 </div>
             </div>
         </div>
@@ -497,7 +497,7 @@
 
                 <div class="code-box">
                     <button class="copy-btn" onclick="copyCode(this)">複製</button>
-<span class="comment">// ===== Gemini API 生成評語 =====</span>
+<pre><span class="comment">// ===== Gemini API 生成評語 =====</span>
 <span class="keyword">function</span> <span class="function">generateFeedback</span>(content) {
   <span class="keyword">const</span> url = <span class="string">`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`</span>;
 
@@ -539,7 +539,7 @@ ${content}
     <span class="function">console.error</span>(<span class="string">'Gemini API error:'</span>, error);
     <span class="keyword">return</span> <span class="string">'感謝你的提交！老師稍後會給你回饋。'</span>;
   }
-}
+}</pre>
                 </div>
             </div>
         </div>
@@ -551,7 +551,7 @@ ${content}
 
                 <div class="code-box">
                     <button class="copy-btn" onclick="copyCode(this)">複製</button>
-<span class="comment">// ===== OpenAI API 生成評語 =====</span>
+<pre><span class="comment">// ===== OpenAI API 生成評語 =====</span>
 <span class="keyword">function</span> <span class="function">generateFeedbackWithOpenAI</span>(content) {
   <span class="keyword">const</span> url = <span class="string">'https://api.openai.com/v1/chat/completions'</span>;
 
@@ -596,7 +596,7 @@ ${content}
     <span class="function">console.error</span>(<span class="string">'OpenAI API error:'</span>, error);
     <span class="keyword">return</span> <span class="string">'感謝你的提交！老師稍後會給你回饋。'</span>;
   }
-}
+}</pre>
                 </div>
 
                 <div class="highlight-box">
@@ -613,7 +613,7 @@ ${content}
 
                 <div class="code-box">
                     <button class="copy-btn" onclick="copyCode(this)">複製</button>
-<span class="comment">// ===== 回覆 LINE 訊息 =====</span>
+<pre><span class="comment">// ===== 回覆 LINE 訊息 =====</span>
 <span class="keyword">function</span> <span class="function">replyMessage</span>(replyToken, text) {
   <span class="keyword">const</span> url = <span class="string">'https://api.line.me/v2/bot/message/reply'</span>;
 
@@ -642,7 +642,7 @@ ${content}
 <span class="comment">// ===== Webhook 驗證用（GET 請求）=====</span>
 <span class="keyword">function</span> <span class="function">doGet</span>(e) {
   <span class="keyword">return</span> ContentService.<span class="function">createTextOutput</span>(<span class="string">'LINE Bot is running!'</span>);
-}
+}</pre>
                 </div>
 
                 <div class="step-box">
@@ -678,7 +678,7 @@ ${content}
 
                 <div class="code-box">
                     <button class="copy-btn" onclick="copyCode(this)">複製</button>
-<span class="comment">// ===== 處理 PDF 檔案 =====</span>
+<pre><span class="comment">// ===== 處理 PDF 檔案 =====</span>
 <span class="keyword">function</span> <span class="function">handleFileMessage</span>(messageId) {
   <span class="keyword">try</span> {
     <span class="comment">// 1. 從 LINE 下載檔案</span>
@@ -709,7 +709,7 @@ ${content}
     <span class="function">console.error</span>(<span class="string">'PDF處理錯誤:'</span>, error);
     <span class="keyword">return</span> <span class="string">'[PDF 檔案已收到，處理中...]'</span>;
   }
-}
+}</pre>
                 </div>
             </div>
         </div>
@@ -721,7 +721,7 @@ ${content}
 
                 <div class="code-box">
                     <button class="copy-btn" onclick="copyCode(this)">複製</button>
-<span class="comment">// ===== 測試 AI 評語生成 =====</span>
+<pre><span class="comment">// ===== 測試 AI 評語生成 =====</span>
 <span class="keyword">function</span> <span class="function">testGenerateFeedback</span>() {
   <span class="keyword">const</span> testContent = <span class="string">`這是我對火星探測任務的學習心得：
 
@@ -738,7 +738,7 @@ ${content}
 <span class="keyword">function</span> <span class="function">testSaveToSheet</span>() {
   <span class="function">saveToSheet</span>(<span class="string">'TEST_USER_123'</span>, <span class="string">'text'</span>, <span class="string">'這是測試內容'</span>);
   <span class="function">console.log</span>(<span class="string">'已寫入 Sheet，請檢查試算表'</span>);
-}
+}</pre>
                 </div>
 
                 <div class="grid-2">
@@ -799,10 +799,12 @@ LINE_AI_Bot.gs
                 </div>
 
                 <div style="text-align: center; margin-top: 20px; padding: 20px; background: linear-gradient(135deg, #e8f5e9, #c8e6c9); border-radius: 15px;">
-                    <p style="font-size: 18px; margin: 0; color: #00c300;">
-                        <strong>下一單元：8-4 AI API 整合</strong><br>
-                        深入講解 AI 評語提示詞設計與優化
-                    </p>
+                    <a href="Part8-4_AI_API整合.html" style="text-decoration: none;">
+                        <p style="font-size: 18px; margin: 0; color: #00c300;">
+                            <strong>下一單元：8-4 AI API 整合 →</strong><br>
+                            深入講解 AI 評語提示詞設計與優化
+                        </p>
+                    </a>
                 </div>
             </div>
         </div>

@@ -203,6 +203,7 @@
             margin: 15px 0;
             overflow-x: auto;
             position: relative;
+            white-space: pre-wrap;
         }
         .code-box::before {
             content: 'GAS 程式碼';
@@ -528,7 +529,7 @@
 
                 <div class="code-box">
                     <button class="copy-btn" onclick="copyCode(this)">複製</button>
-<span class="comment">// ===== 生成完整評語（四字+文字說明）=====</span>
+<pre><span class="comment">// ===== 生成完整評語（四字+文字說明）=====</span>
 <span class="keyword">function</span> <span class="function">generateFullFeedback</span>(content) {
   <span class="keyword">const</span> url = <span class="string">`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`</span>;
 
@@ -569,7 +570,7 @@ ${content}
   } <span class="keyword">catch</span> (error) {
     <span class="keyword">return</span> <span class="string">'四字評語：勤學好問・繼續加油\n文字回饋：感謝你的用心，老師會仔細閱讀。'</span>;
   }
-}
+}</pre>
                 </div>
             </div>
         </div>
@@ -581,7 +582,7 @@ ${content}
 
                 <div class="code-box">
                     <button class="copy-btn" onclick="copyCode(this)">複製</button>
-<span class="comment">// ===== 解析 AI 回傳的評語 =====</span>
+<pre><span class="comment">// ===== 解析 AI 回傳的評語 =====</span>
 <span class="keyword">function</span> <span class="function">parseFeedback</span>(aiResponse) {
   <span class="keyword">const</span> result = {
     fourChar: <span class="string">''</span>,    <span class="comment">// 四字評語</span>
@@ -624,7 +625,7 @@ ${parsed.feedback}
 
   <span class="function">console.log</span>(<span class="string">'解析結果：'</span>, parsed);
   <span class="function">console.log</span>(<span class="string">'格式化訊息：'</span>, formatted);
-}
+}</pre>
                 </div>
             </div>
         </div>
@@ -636,7 +637,7 @@ ${parsed.feedback}
 
                 <div class="code-box">
                     <button class="copy-btn" onclick="copyCode(this)">複製</button>
-<span class="comment">// ===== 完整處理流程 =====</span>
+<pre><span class="comment">// ===== 完整處理流程 =====</span>
 <span class="keyword">function</span> <span class="function">handleMessageComplete</span>(event) {
   <span class="keyword">const</span> userId = event.source.userId;
   <span class="keyword">const</span> replyToken = event.replyToken;
@@ -668,7 +669,7 @@ ${parsed.feedback}
     fourChar,                   <span class="comment">// D: 四字評語</span>
     feedback                    <span class="comment">// E: 文字回饋</span>
   ]);
-}
+}</pre>
                 </div>
 
                 <div class="highlight-box">
@@ -744,10 +745,12 @@ ${parsed.feedback}
                     </div>
                     <div class="card">
                         <h4>下一單元預告</h4>
-                        <p style="margin-bottom: 0;">
-                            <strong>9-2 文字敘述評語設計</strong><br>
-                            如何讓 AI 生成有深度的 50-100 字回饋
-                        </p>
+                        <a href="Part9-2_文字敘述評語.html" style="text-decoration: none; color: inherit;">
+                            <p style="margin-bottom: 0;">
+                                <strong>9-2 文字敘述評語設計 →</strong><br>
+                                如何讓 AI 生成有深度的 50-100 字回饋
+                            </p>
+                        </a>
                     </div>
                 </div>
             </div>

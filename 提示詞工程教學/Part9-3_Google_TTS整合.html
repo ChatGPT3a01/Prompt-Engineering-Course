@@ -202,6 +202,7 @@
             margin: 15px 0;
             overflow-x: auto;
             position: relative;
+            white-space: pre-wrap;
         }
         .code-box::before {
             content: 'GAS 程式碼';
@@ -457,7 +458,7 @@
 
                 <div class="code-box">
                     <button class="copy-btn" onclick="copyCode(this)">複製</button>
-<span class="comment">// ===== Google Cloud TTS 設定 =====</span>
+<pre><span class="comment">// ===== Google Cloud TTS 設定 =====</span>
 <span class="keyword">const</span> GOOGLE_CLOUD_API_KEY = <span class="string">'你的 Google Cloud API Key'</span>;
 <span class="keyword">const</span> DRIVE_FOLDER_ID = <span class="string">'存放音檔的資料夾 ID'</span>;
 
@@ -508,7 +509,7 @@
     <span class="function">console.error</span>(<span class="string">'TTS 錯誤：'</span>, error);
     <span class="keyword">return</span> <span class="keyword">null</span>;
   }
-}
+}</pre>
                 </div>
             </div>
         </div>
@@ -520,7 +521,7 @@
 
                 <div class="code-box">
                     <button class="copy-btn" onclick="copyCode(this)">複製</button>
-<span class="comment">// ===== 完整流程：評語 + 語音 =====</span>
+<pre><span class="comment">// ===== 完整流程：評語 + 語音 =====</span>
 <span class="keyword">function</span> <span class="function">generateFeedbackWithVoice</span>(content, userId) {
   <span class="comment">// 1. 生成 AI 評語</span>
   <span class="keyword">const</span> aiResponse = <span class="function">generateFullFeedback</span>(content);
@@ -560,7 +561,7 @@
     feedback,                   <span class="comment">// E: 文字回饋</span>
     audioUrl || <span class="string">''</span>              <span class="comment">// F: 語音連結</span>
   ]);
-}
+}</pre>
                 </div>
             </div>
         </div>
@@ -572,7 +573,7 @@
 
                 <div class="code-box">
                     <button class="copy-btn" onclick="copyCode(this)">複製</button>
-<span class="comment">// ===== 格式化完整回覆訊息 =====</span>
+<pre><span class="comment">// ===== 格式化完整回覆訊息 =====</span>
 <span class="keyword">function</span> <span class="function">formatCompleteMessage</span>(result) {
   <span class="keyword">let</span> message = <span class="string">`
 【四字評語】
@@ -607,7 +608,7 @@ ${result.audioUrl}`</span>;
 
   <span class="comment">// 回覆 LINE</span>
   <span class="function">replyMessage</span>(replyToken, message);
-}
+}</pre>
                 </div>
 
                 <div class="highlight-box">
@@ -631,7 +632,7 @@ ${result.audioUrl}`</span>;
                 <div class="code-box" style="background: linear-gradient(135deg, #4a148c, #7b1fa2);">
                     <button class="copy-btn" onclick="copyCode(this)">複製</button>
                     <span style="color: #ce93d8; font-size: 12px;">HTML + JavaScript</span>
-<span class="comment">// ===== 網頁 TTS 播放按鈕 =====</span>
+<pre><span class="comment">// ===== 網頁 TTS 播放按鈕 =====</span>
 
 &lt;!-- HTML 部分 --&gt;
 &lt;button onclick="<span class="function">speakFeedback</span>()"&gt;🔊 播放評語&lt;/button&gt;
@@ -649,7 +650,7 @@ ${result.audioUrl}`</span>;
 
   window.speechSynthesis.<span class="function">speak</span>(utterance);
 }
-&lt;/script&gt;
+&lt;/script&gt;</pre>
                 </div>
 
                 <div class="warning-box">
@@ -670,7 +671,7 @@ ${result.audioUrl}`</span>;
 
                 <div class="code-box">
                     <button class="copy-btn" onclick="copyCode(this)">複製</button>
-<span class="comment">// ===== 測試 TTS 生成 =====</span>
+<pre><span class="comment">// ===== 測試 TTS 生成 =====</span>
 <span class="keyword">function</span> <span class="function">testGenerateSpeech</span>() {
   <span class="keyword">const</span> testText = <span class="string">'評語：探索未知，勇於嘗試。老師回饋：你的火星探測報告展現了對科學探究的熱情。'</span>;
 
@@ -699,7 +700,7 @@ ${result.audioUrl}`</span>;
   <span class="keyword">const</span> message = <span class="function">formatCompleteMessage</span>(result);
   <span class="function">console.log</span>(<span class="string">'===== LINE 訊息 ====='</span>);
   <span class="function">console.log</span>(message);
-}
+}</pre>
                 </div>
 
                 <div class="step-box">
@@ -726,7 +727,7 @@ ${result.audioUrl}`</span>;
 
                 <div class="code-box">
                     <button class="copy-btn" onclick="copyCode(this)">複製</button>
-<span class="comment">// ===== 最終版本的 Webhook 入口 =====</span>
+<pre><span class="comment">// ===== 最終版本的 Webhook 入口 =====</span>
 <span class="keyword">function</span> <span class="function">doPost</span>(e) {
   <span class="keyword">try</span> {
     <span class="keyword">const</span> data = <span class="function">JSON.parse</span>(e.postData.contents);
@@ -744,7 +745,7 @@ ${result.audioUrl}`</span>;
     <span class="function">console.error</span>(<span class="string">'doPost error:'</span>, error);
     <span class="keyword">return</span> ContentService.<span class="function">createTextOutput</span>(<span class="string">'Error'</span>);
   }
-}
+}</pre>
                 </div>
 
                 <div class="grid-2">
