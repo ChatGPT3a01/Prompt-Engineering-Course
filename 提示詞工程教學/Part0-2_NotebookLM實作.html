@@ -501,7 +501,74 @@
             </div>
         </div>
 
-        <!-- Slide 5: 簡報生成神級提示詞 -->
+        <!-- Slide 5: 資訊圖表功能 - 基礎圖表 -->
+        <div class="slide">
+            <div class="content-card">
+                <h2>資訊圖表功能：資料視覺化</h2>
+
+                <div class="highlight-box">
+                    <h4>NotebookLM 也能繪製圖表！</h4>
+                    <p>將 Excel/Google Sheets 試算表資料上傳後，NotebookLM 可以根據提示詞生成各種統計圖表。以下是優化過的圖表提示詞範本：</p>
+                </div>
+
+                <div class="prompt-box">
+                    <h4>📊 柱形圖 (Column Chart)</h4>
+                    <p style="font-size: 14px;">請讀取資料表，繪製一張 Column Chart (垂直柱狀圖)。X軸 (Category)：設為 [欄位名稱：如月份]。Y軸 (Value)：設為 [欄位名稱：如營收]，並進行 [計算方式：總和 sum / 平均 mean]。分組 (Hue)：若有需要，請依 [次要分類：如部門] 顯示不同顏色柱體。標籤：請在柱子上顯示具體數值。</p>
+                </div>
+
+                <div class="prompt-box">
+                    <h4>📈 折線圖 (Line Chart)</h4>
+                    <p style="font-size: 14px;">請繪製一張 Line Chart (折線圖) 來呈現趨勢。X軸 (Time)：設為 [時間欄位：如日期]，請確保將其轉換為 datetime 格式。Y軸 (Value)：設為 [數值欄位：如股價]。多線比較 (Hue)：請依據 [分類欄位：如公司] 繪製多條折線。標記：請標出數值的 Max (最高點) 與 Min (最低點)。</p>
+                </div>
+
+                <div class="prompt-box">
+                    <h4>🥧 餅圖 (Pie Chart)</h4>
+                    <p style="font-size: 14px;">請繪製一張 Pie Chart (餅圖)。數據來源：依據 [分類欄位] 統計 [數值欄位] 的總和。資料清理：為了避免圖表雜亂，請只保留前 [數字：如 5] 大的類別，其餘歸類為 'Others'。標籤：請顯示 '類別名稱' + '百分比'。</p>
+                </div>
+
+                <p style="font-size: 13px; color: #666; text-align: right; margin-top: 15px;">
+                    📚 資料來源：數位敘事力期刊 (吳奇老師)
+                </p>
+            </div>
+        </div>
+
+        <!-- Slide 6: 資訊圖表功能 - 進階圖表 -->
+        <div class="slide">
+            <div class="content-card">
+                <h2>更多圖表類型提示詞</h2>
+
+                <div class="prompt-box">
+                    <h4>🔵 散點圖 (Scatter Plot)</h4>
+                    <p style="font-size: 14px;">請繪製一張 Scatter Plot (散點圖) 分析相關性。X軸：[變數 A：如廣告費]。Y軸：[變數 B：如營收]。輔助線：請加上一條 Regression Line (回歸趨勢線)。標題：請計算並在標題顯示兩者的 Correlation Coefficient (相關係數 R值)。</p>
+                </div>
+
+                <div class="prompt-box">
+                    <h4>🕸️ 雷達圖 (Radar Chart)</h4>
+                    <p style="font-size: 14px;">請繪製一張 Radar Chart (雷達圖)。維度 (Variables)：請使用 [多個能力欄位清單] 作為軸。數據處理：請先將數據 Normalize (標準化) 到 0-1 區間。比較對象：將 [對象 A] 與 [對象 B] 畫在同一張圖上進行比較，並填充半透明顏色。</p>
+                </div>
+
+                <div class="prompt-box">
+                    <h4>🔻 漏斗圖 (Funnel Chart)</h4>
+                    <p style="font-size: 14px;">請繪製 Funnel Chart (漏斗圖)。階段 (Stages)：依序為 [階段 1, 階段 2, 階段 3...]。數值 (Values)：對應各階段的 [人數/數量]。標註：請自動計算並顯示每個階段對於上一階段的 Conversion Rate (轉化率)。</p>
+                </div>
+
+                <div class="prompt-box">
+                    <h4>☁️ 詞雲圖 (Word Cloud)</h4>
+                    <p style="font-size: 14px;">請製作一張 Word Cloud (詞雲圖)。文本來源：讀取 [文字欄位] 的內容。前處理：請進行分詞，並移除常見的 Stopwords (停用詞)。字體：請務必使用支援中文的字體，以免出現亂碼。</p>
+                </div>
+
+                <div class="highlight-box">
+                    <h4>⚠️ 使用提醒</h4>
+                    <p>NotebookLM 的數學邏輯部分仍需檢查，若需呈現精準數據，建議用 Python、R 等語言進行視覺化較為正確！</p>
+                </div>
+
+                <p style="font-size: 13px; color: #666; text-align: right;">
+                    📚 資料來源：數位敘事力期刊 (吳奇老師)
+                </p>
+            </div>
+        </div>
+
+        <!-- Slide 7: 簡報生成神級提示詞 -->
         <div class="slide">
             <div class="content-card">
                 <h2>簡報生成：五種神級提示詞風格</h2>
@@ -549,10 +616,21 @@
                     <h4>選擇適合受眾的風格</h4>
                     <p>根據不同的溝通對象，設計出他們會感興趣的風格。國小生用黏土風、高中生用漫畫風、正式場合用抽象專業風。</p>
                 </div>
+
+                <div class="step-box" style="background: linear-gradient(135deg, #e8f5e9, #c8e6c9); border-left-color: #4caf50;">
+                    <h4 style="color: #2e7d32;">🛠️ 實用工具：NotebookLM 簡報編輯器</h4>
+                    <p>NotebookLM 生成的簡報是<strong>圖片格式</strong>無法直接編輯，這個工具可以幫你轉換！</p>
+                    <ul>
+                        <li>上傳 PDF 簡報 → OCR 識別文字 → 直接編輯</li>
+                        <li>可輸出為 <strong>PDF 或 PowerPoint (.pptx)</strong> 格式</li>
+                        <li>基本功能免費使用</li>
+                    </ul>
+                    <p style="margin-top: 10px;"><a href="https://notebooklm.10xboost.org/" target="_blank" style="color: #1565c0; font-weight: bold;">👉 前往 NotebookLM 簡報編輯器</a></p>
+                </div>
             </div>
         </div>
 
-        <!-- Slide 7: Podcast 生成 -->
+        <!-- Slide 9: Podcast 生成 -->
         <div class="slide">
             <div class="content-card">
                 <h2>AI Podcast 生成功能</h2>
@@ -677,7 +755,7 @@
     </div>
 
     <div class="slide-number">
-        <span id="currentSlide">1</span> / <span id="totalSlides">9</span>
+        <span id="currentSlide">1</span> / <span id="totalSlides">11</span>
     </div>
 
     <script>
