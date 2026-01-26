@@ -571,16 +571,32 @@
             <!-- TTS 設定（條件顯示） -->
             <div class="conditional-section" id="ttsSection">
                 <h3>🔊 Google Cloud TTS 設定</h3>
+
+                <!-- TTS 設定教學 -->
+                <div class="info-box" style="margin-bottom: 20px;">
+                    <h4>如何取得 Google Cloud API Key？</h4>
+                    <ol style="margin: 10px 0 0 20px; line-height: 1.8;">
+                        <li>前往 <a href="https://console.cloud.google.com/" target="_blank" style="color: #1976d2;">Google Cloud Console</a></li>
+                        <li>建立新專案（或選擇現有專案）</li>
+                        <li>點擊左側選單「API 和服務」→「已啟用的 API 和服務」</li>
+                        <li>點擊「+ 啟用 API 和服務」，搜尋「Cloud Text-to-Speech API」並啟用</li>
+                        <li>回到「API 和服務」→「憑證」</li>
+                        <li>點擊「+ 建立憑證」→「API 金鑰」</li>
+                        <li>複製產生的 API 金鑰，貼到下方欄位</li>
+                    </ol>
+                    <p style="margin-top: 10px; color: #e65100;"><strong>注意：</strong>Google Cloud TTS 每月有免費額度（約 100 萬字元），超過才需付費。</p>
+                </div>
+
                 <div class="form-row">
                     <div class="form-group">
                         <label>Google Cloud API Key <span class="required">*</span>
-                            <span class="hint">需啟用 Text-to-Speech API</span>
+                            <span class="hint">從 Google Cloud Console 憑證頁面取得</span>
                         </label>
                         <input type="password" id="googleCloudKey" placeholder="請貼上你的 Google Cloud API Key">
                     </div>
                     <div class="form-group">
                         <label>Google Drive 資料夾 ID <span class="required">*</span>
-                            <span class="hint">用於存放生成的音檔</span>
+                            <span class="hint">用於存放生成的音檔（從資料夾網址取得）</span>
                         </label>
                         <input type="text" id="driveFolderId" placeholder="例如：1k4Tbtf8iqjc...">
                     </div>
@@ -602,9 +618,9 @@
                         </select>
                     </div>
                 </div>
-                <div class="info-box">
-                    <h4>TTS 功能說明</h4>
-                    <p>語音合成功能需要設定 Google Cloud TTS API。如暫時不需要語音功能，可先不勾選此選項，之後再加入。</p>
+                <div class="warning-box">
+                    <h4>暫時不需要語音功能？</h4>
+                    <p>可以先不勾選「語音合成 (TTS)」功能，之後有需要再加入即可。四字評語和文字評語功能不需要 Google Cloud。</p>
                 </div>
             </div>
 
