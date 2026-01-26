@@ -1,8 +1,8 @@
 <div align="center">
 
-# ✨ 提示詞工程實戰教學 ✨
+# ✨ AI 智慧教學實戰工作坊 ✨
 
-### Prompt Engineering Complete Course
+### ~談教學、創評量~
 
 [![License](https://img.shields.io/badge/授權-僅限學員使用-red.svg)](LICENSE)
 [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-線上觀看-blue?logo=github)](https://chatgpt3a01.github.io/Prompt-Engineering-Course/)
@@ -18,20 +18,20 @@
 <tr>
 <td align="center" width="50%">
 
-### 📘 第一次課程
+### 📘 談教學
 
-**提示詞工程基礎**
+**提示詞工程與教學應用**
 
 文案、圖像、教學備課、互動專案
 
 <br>
 
-[![進入課程](https://img.shields.io/badge/▶%20進入第一次課程-1976D2?style=for-the-badge&logo=google-chrome&logoColor=white)](https://chatgpt3a01.github.io/Prompt-Engineering-Course/提示詞工程教學/index.html)
+[![進入課程](https://img.shields.io/badge/▶%20談教學-1976D2?style=for-the-badge&logo=google-chrome&logoColor=white)](https://chatgpt3a01.github.io/Prompt-Engineering-Course/提示詞工程教學/index.html)
 
 </td>
 <td align="center" width="50%">
 
-### 📗 第二次課程
+### 📗 創評量
 
 **AI 協作學習單與評量設計**
 
@@ -39,7 +39,7 @@
 
 <br>
 
-[![進入課程](https://img.shields.io/badge/▶%20進入第二次課程-00796B?style=for-the-badge&logo=google-chrome&logoColor=white)](https://chatgpt3a01.github.io/Prompt-Engineering-Course/提示詞工程教學/index2.html)
+[![進入課程](https://img.shields.io/badge/▶%20創評量-00796B?style=for-the-badge&logo=google-chrome&logoColor=white)](https://chatgpt3a01.github.io/Prompt-Engineering-Course/提示詞工程教學/index2.html)
 
 </td>
 </tr>
@@ -53,8 +53,8 @@
 
 <table>
 <tr>
-<th align="center">🔵 第一次課程</th>
-<th align="center">🟢 第二次課程</th>
+<th align="center">🔵 談教學</th>
+<th align="center">🟢 創評量</th>
 </tr>
 <tr>
 <td>
@@ -175,6 +175,6 @@
 
 [![開始學習](https://img.shields.io/badge/🚀%20立即進入課程-FF4081?style=for-the-badge)](https://chatgpt3a01.github.io/Prompt-Engineering-Course/)
 
-**掌握與 AI 對話的藝術，從文案、教案、圖像到互動專案**
+**AI 智慧教學實戰工作坊~談教學、創評量**
 
 </div>
