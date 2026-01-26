@@ -519,19 +519,51 @@
                     <input type="text" id="spreadsheetId" placeholder="例如：1w5OjdXzs8NmGL...">
                 </div>
             </div>
+
+            <!-- AI 服務選擇 -->
+            <h2>AI 服務設定</h2>
+            <div class="feature-cards" style="grid-template-columns: repeat(2, 1fr);">
+                <div class="feature-card active" data-provider="gemini" onclick="selectProvider('gemini')">
+                    <div class="icon">🔷</div>
+                    <div class="title">Google Gemini</div>
+                    <div class="desc">免費額度多，適合教育使用</div>
+                    <div class="badge">推薦</div>
+                </div>
+                <div class="feature-card" data-provider="openai" onclick="selectProvider('openai')">
+                    <div class="icon">🟢</div>
+                    <div class="title">OpenAI GPT</div>
+                    <div class="desc">品質穩定，需付費 API</div>
+                </div>
+            </div>
+
             <div class="form-row">
-                <div class="form-group">
+                <div class="form-group" id="geminiKeyGroup">
                     <label>Gemini API Key <span class="required">*</span>
                         <span class="hint">從 Google AI Studio 取得</span>
                     </label>
                     <input type="password" id="geminiApiKey" placeholder="請貼上你的 Gemini API Key">
                 </div>
+                <div class="form-group" id="openaiKeyGroup" style="display: none;">
+                    <label>OpenAI API Key <span class="required">*</span>
+                        <span class="hint">從 OpenAI Platform 取得</span>
+                    </label>
+                    <input type="password" id="openaiApiKey" placeholder="請貼上你的 OpenAI API Key">
+                </div>
                 <div class="form-group">
                     <label>模型版本</label>
                     <select id="modelSelect">
-                        <option value="gemini-2.5-flash" selected>gemini-2.5-flash（推薦）</option>
-                        <option value="gemini-2.0-flash">gemini-2.0-flash</option>
-                        <option value="gemini-3-flash-preview">gemini-3-flash-preview（最新）</option>
+                        <optgroup label="Gemini 模型" id="geminiModels">
+                            <option value="gemini-2.5-flash" selected>gemini-2.5-flash（推薦）</option>
+                            <option value="gemini-2.0-flash">gemini-2.0-flash</option>
+                            <option value="gemini-3-flash-preview">gemini-3-flash-preview（最新）</option>
+                            <option value="gemini-3-pro-preview">gemini-3-pro-preview（最強）</option>
+                        </optgroup>
+                        <optgroup label="OpenAI 模型" id="openaiModels" style="display: none;">
+                            <option value="gpt-4o">gpt-4o（推薦）</option>
+                            <option value="gpt-4o-mini">gpt-4o-mini（便宜快速）</option>
+                            <option value="gpt-4.1">gpt-4.1（進階版本）</option>
+                            <option value="gpt-5.1">gpt-5.1（最新最強）</option>
+                        </optgroup>
                     </select>
                 </div>
             </div>
@@ -570,9 +602,9 @@
                         </select>
                     </div>
                 </div>
-                <div class="warning-box">
-                    <h4>替代方案</h4>
-                    <p>如果不想設定 Google Cloud，可以在網頁端使用 Web Speech API 實現即時語音播放（程式碼會包含替代方案）。</p>
+                <div class="info-box">
+                    <h4>TTS 功能說明</h4>
+                    <p>語音合成功能需要設定 Google Cloud TTS API。如暫時不需要語音功能，可先不勾選此選項，之後再加入。</p>
                 </div>
             </div>
 
@@ -681,6 +713,39 @@
             tts: false
         };
 
+        // AI 服務選擇
+        let selectedProvider = 'gemini';
+
+        function selectProvider(provider) {
+            selectedProvider = provider;
+
+            // 更新卡片樣式
+            document.querySelectorAll('.feature-card[data-provider]').forEach(card => {
+                card.classList.toggle('active', card.dataset.provider === provider);
+            });
+
+            // 切換 API Key 輸入框
+            const geminiKeyGroup = document.getElementById('geminiKeyGroup');
+            const openaiKeyGroup = document.getElementById('openaiKeyGroup');
+            const geminiModels = document.getElementById('geminiModels');
+            const openaiModels = document.getElementById('openaiModels');
+            const modelSelect = document.getElementById('modelSelect');
+
+            if (provider === 'gemini') {
+                geminiKeyGroup.style.display = 'block';
+                openaiKeyGroup.style.display = 'none';
+                geminiModels.style.display = 'block';
+                openaiModels.style.display = 'none';
+                modelSelect.value = 'gemini-2.5-flash';
+            } else {
+                geminiKeyGroup.style.display = 'none';
+                openaiKeyGroup.style.display = 'block';
+                geminiModels.style.display = 'none';
+                openaiModels.style.display = 'block';
+                modelSelect.value = 'gpt-4o';
+            }
+        }
+
         function toggleFeature(feature) {
             features[feature] = !features[feature];
             const card = document.querySelector(`.feature-card[data-feature="${feature}"]`);
@@ -705,6 +770,7 @@
                 lineToken: document.getElementById('lineToken').value.trim() || '你的_LINE_TOKEN',
                 spreadsheetId: document.getElementById('spreadsheetId').value.trim() || '你的_SPREADSHEET_ID',
                 geminiApiKey: document.getElementById('geminiApiKey').value.trim() || '你的_GEMINI_API_KEY',
+                openaiApiKey: document.getElementById('openaiApiKey').value.trim() || '你的_OPENAI_API_KEY',
                 model: document.getElementById('modelSelect').value,
                 googleCloudKey: document.getElementById('googleCloudKey').value.trim() || '你的_GOOGLE_CLOUD_KEY',
                 driveFolderId: document.getElementById('driveFolderId').value.trim() || '你的_DRIVE_FOLDER_ID',
@@ -722,7 +788,12 @@
                 'mentor': '師長關愛、循循善誘'
             };
 
-            let code = generatePart9Code(config, toneMap);
+            let code;
+            if (selectedProvider === 'gemini') {
+                code = generatePart9Code(config, toneMap);
+            } else {
+                code = generatePart9OpenAICode(config, toneMap);
+            }
 
             document.getElementById('codeContent').textContent = code;
             document.getElementById('codeOutput').classList.add('show');
@@ -1087,6 +1158,305 @@ function testTTS() {
 // 使用方式：<button onclick="speakFeedback('評語文字')">🔊 播放</button>
 `;
             }
+
+            return code;
+        }
+
+        // OpenAI 版本的程式碼生成
+        function generatePart9OpenAICode(config, toneMap) {
+            const enabledFeatures = [];
+            if (features.fourChar) enabledFeatures.push('四字評語');
+            if (features.descriptive) enabledFeatures.push('文字敘述評語');
+            if (features.tts) enabledFeatures.push('語音合成');
+
+            let code = `// ============================================
+// Part9 進階評語功能 - Google Apps Script
+// AI 服務：OpenAI GPT
+// 啟用功能：${enabledFeatures.join('、')}
+// 模型：${config.model}
+// 生成時間：${new Date().toLocaleString('zh-TW')}
+// ============================================
+
+// ===== Part9 設定常數 =====
+const PART9_OPENAI_API_KEY = '${config.openaiApiKey}';
+const PART9_MODEL = '${config.model}';
+const PART9_SPREADSHEET_ID = '${config.spreadsheetId}';
+const PART9_LINE_TOKEN = '${config.lineToken}';
+`;
+
+            if (features.tts) {
+                code += `
+// TTS 設定
+const GOOGLE_CLOUD_TTS_KEY = '${config.googleCloudKey}';
+const TTS_DRIVE_FOLDER_ID = '${config.driveFolderId}';
+const TTS_LANGUAGE = '${config.ttsLanguage}';
+const TTS_GENDER = '${config.ttsGender}';
+`;
+            }
+
+            code += `
+// 評語風格設定
+const FEEDBACK_CONFIG = {
+  tone: '${toneMap[config.toneStyle]}',
+  feedbackLength: '${config.feedbackLength}',
+  fourCharStyle: \`${config.fourCharStyle}\`
+};
+
+// ============================================
+// 完整評語生成（整合所有功能）
+// ============================================
+function generateCompleteFeedback(studentWork, userId) {
+  const result = {
+    fourChar: '',
+    feedback: '',
+    audioUrl: null,
+    timestamp: new Date()
+  };
+
+  try {
+    const aiResponse = callOpenAIForFeedback(studentWork);
+    const parsed = parseAIResponse(aiResponse);
+
+    result.fourChar = parsed.fourChar || '持續努力・未來可期';
+    result.feedback = parsed.feedback || '感謝你用心完成這份作品！老師已收到並會仔細閱讀。';
+`;
+
+            if (features.tts) {
+                code += `
+    if (result.feedback) {
+      const speechText = result.fourChar + '。' + result.feedback;
+      result.audioUrl = generateSpeech(speechText, 'feedback_' + userId.substring(0, 8));
+    }
+`;
+            }
+
+            code += `
+    logFeedbackToSheet(userId, studentWork, result);
+
+  } catch (error) {
+    Logger.log('generateCompleteFeedback Error: ' + error.toString());
+    result.fourChar = '勤學好問・繼續加油';
+    result.feedback = '感謝你的用心，老師會仔細閱讀你的作品。';
+  }
+
+  return result;
+}
+
+// ============================================
+// OpenAI API 評語生成
+// ============================================
+function callOpenAIForFeedback(studentWork) {
+  const url = 'https://api.openai.com/v1/chat/completions';
+
+  const maxLength = 6000;
+  const truncatedWork = studentWork.length > maxLength
+    ? studentWork.substring(0, maxLength) + '...(已截取)'
+    : studentWork;
+
+  const systemPrompt = \`你是一位溫暖專業的教師，請評估學生作品並生成評語。
+
+評語要求：
+- 語氣：\${FEEDBACK_CONFIG.tone}
+- 字數：\${FEEDBACK_CONFIG.feedbackLength} 字
+${features.fourChar ? `- 四字評語風格：\${FEEDBACK_CONFIG.fourCharStyle}` : ''}
+
+回傳格式（嚴格 JSON）：
+{
+${features.fourChar ? '  "fourChar": "○○○○・○○○○",' : ''}
+  "feedback": "50-100字文字評語，具體指出優點並給予鼓勵"
+}
+
+請只輸出 JSON，不要加任何說明。\`;
+
+  const userPrompt = '請評估以下學生作品：\\n\\n' + truncatedWork;
+
+  const payload = {
+    model: PART9_MODEL,
+    messages: [
+      { role: 'system', content: systemPrompt },
+      { role: 'user', content: userPrompt }
+    ],
+    max_tokens: 512,
+    temperature: 0.7
+  };
+
+  const options = {
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + PART9_OPENAI_API_KEY
+    },
+    payload: JSON.stringify(payload),
+    muteHttpExceptions: true
+  };
+
+  const response = UrlFetchApp.fetch(url, options);
+  const result = JSON.parse(response.getContentText());
+
+  if (result.choices && result.choices[0]) {
+    return result.choices[0].message.content;
+  }
+  throw new Error('OpenAI API 回傳異常');
+}
+
+function parseAIResponse(aiResponse) {
+  try {
+    const jsonMatch = aiResponse.match(/\\{[\\s\\S]*\\}/);
+    if (jsonMatch) {
+      return JSON.parse(jsonMatch[0]);
+    }
+  } catch (e) {
+    Logger.log('parseAIResponse Error: ' + e.toString());
+  }
+  return { fourChar: '', feedback: aiResponse };
+}
+`;
+
+            // TTS 函數（與 Gemini 版本相同）
+            if (features.tts) {
+                code += `
+// ============================================
+// Google Cloud TTS 語音合成
+// ============================================
+function generateSpeech(text, fileName) {
+  try {
+    const url = 'https://texttospeech.googleapis.com/v1/text:synthesize?key=' + GOOGLE_CLOUD_TTS_KEY;
+
+    const voiceName = TTS_LANGUAGE === 'zh-TW' ? 'zh-TW-Standard-A' :
+                      TTS_LANGUAGE === 'zh-CN' ? 'zh-CN-Standard-A' : 'en-US-Standard-A';
+
+    const payload = {
+      input: { text: text },
+      voice: {
+        languageCode: TTS_LANGUAGE,
+        name: voiceName,
+        ssmlGender: TTS_GENDER
+      },
+      audioConfig: {
+        audioEncoding: 'MP3',
+        speakingRate: 1.0,
+        pitch: 0
+      }
+    };
+
+    const options = {
+      method: 'post',
+      contentType: 'application/json',
+      payload: JSON.stringify(payload),
+      muteHttpExceptions: true
+    };
+
+    const response = UrlFetchApp.fetch(url, options);
+    const result = JSON.parse(response.getContentText());
+
+    if (!result.audioContent) {
+      Logger.log('TTS 回傳無音訊內容');
+      return null;
+    }
+
+    const audioBytes = Utilities.base64Decode(result.audioContent);
+    const audioBlob = Utilities.newBlob(audioBytes, 'audio/mpeg', fileName + '.mp3');
+    const folder = DriveApp.getFolderById(TTS_DRIVE_FOLDER_ID);
+    const file = folder.createFile(audioBlob);
+    file.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
+
+    return file.getUrl();
+  } catch (error) {
+    Logger.log('generateSpeech Error: ' + error.toString());
+    return null;
+  }
+}
+`;
+            }
+
+            // 格式化訊息、記錄函數、測試函數（與 Gemini 版本相同）
+            code += `
+// ============================================
+// 格式化 LINE 訊息
+// ============================================
+function formatFeedbackMessage(result) {
+  let message = '';
+${features.fourChar ? `
+  if (result.fourChar) {
+    message += '✨【四字評語】✨\\n' + result.fourChar + '\\n\\n';
+  }
+` : ''}
+${features.descriptive ? `
+  if (result.feedback) {
+    message += '📝【老師回饋】\\n' + result.feedback + '\\n';
+  }
+` : ''}
+${features.tts ? `
+  if (result.audioUrl) {
+    message += '\\n🔊【語音版本】\\n' + result.audioUrl;
+  }
+` : ''}
+  return message || '感謝你的提交！老師會盡快給你回饋。';
+}
+
+// ============================================
+// 記錄到試算表
+// ============================================
+function logFeedbackToSheet(userId, content, result) {
+  try {
+    const spreadsheet = SpreadsheetApp.openById(PART9_SPREADSHEET_ID);
+    let sheet = spreadsheet.getSheetByName('Part9評語記錄');
+
+    if (!sheet) {
+      sheet = spreadsheet.insertSheet('Part9評語記錄');
+      sheet.getRange(1, 1, 1, 6).setValues([[
+        '時間', 'LINE ID', '作品內容', '四字評語', '文字回饋', '語音連結'
+      ]]);
+      sheet.getRange(1, 1, 1, 6).setFontWeight('bold');
+    }
+
+    const timestamp = Utilities.formatDate(new Date(), 'Asia/Taipei', 'yyyy/MM/dd HH:mm:ss');
+    sheet.appendRow([
+      timestamp,
+      userId.substring(0, 10) + '***',
+      content.substring(0, 500),
+      result.fourChar || '',
+      result.feedback || '',
+      result.audioUrl || ''
+    ]);
+  } catch (error) {
+    Logger.log('logFeedbackToSheet Error: ' + error.toString());
+  }
+}
+
+// ============================================
+// 測試函數
+// ============================================
+function testPart9Functions() {
+  Logger.log('===== Part9 功能測試（OpenAI）=====');
+
+  const testWork = '這次我研究了人工智慧在教育領域的應用。我發現 AI 可以幫助老師設計個人化的學習路徑，也能自動批改作業。';
+
+  Logger.log('測試作品：' + testWork.substring(0, 50) + '...');
+
+  try {
+    const result = generateCompleteFeedback(testWork, 'TEST_USER_123');
+    Logger.log('四字評語：' + result.fourChar);
+    Logger.log('文字回饋：' + result.feedback);
+${features.tts ? "    Logger.log('語音連結：' + (result.audioUrl || '未生成'));" : ''}
+    Logger.log('格式化訊息：\\n' + formatFeedbackMessage(result));
+    Logger.log('✅ 測試成功！');
+  } catch (error) {
+    Logger.log('❌ 測試失敗：' + error.toString());
+  }
+}
+
+function testOpenAIAPI() {
+  Logger.log('測試 OpenAI API 連線...');
+  try {
+    const response = callOpenAIForFeedback('這是一份測試作品，主題是環境保護。');
+    Logger.log('✅ OpenAI API 正常');
+    Logger.log('回應：' + response);
+  } catch (error) {
+    Logger.log('❌ OpenAI API 失敗：' + error.toString());
+  }
+}
+`;
 
             return code;
         }
