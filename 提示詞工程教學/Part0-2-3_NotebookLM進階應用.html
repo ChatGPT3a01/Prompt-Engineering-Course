@@ -360,7 +360,58 @@
             </div>
         </div>
 
-        <!-- Slide 8: 數位平權完整應用 -->
+        <!-- Slide 8: YAML 結構化指令 -->
+        <div class="slide">
+            <div class="content-card">
+                <h2>進階技巧：YAML 結構化指令</h2>
+                <div class="highlight-box">
+                    <h4>什麼是 YAML？</h4>
+                    <p>YAML（YAML Ain't Markup Language）是一種人類可讀的資料結構化格式，常用於配置檔案。有些使用者發現用 YAML 格式給 AI 指令，能讓複雜的要求更清楚。</p>
+                </div>
+                <h3>YAML 格式範例</h3>
+                <div class="prompt-box">
+                    <h4>傳統提示詞 vs YAML 格式</h4>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 10px;">
+                        <div style="background: #fff; padding: 15px; border-radius: 10px; border: 1px solid #ddd;">
+                            <p style="font-weight: bold; color: #666; margin-bottom: 8px;">傳統寫法：</p>
+                            <code style="font-size: 13px;">請幫我生成 5 題選擇題，主題是火星探測，難度中等，每題 4 個選項，並提供答案解析。</code>
+                        </div>
+                        <div style="background: #fff; padding: 15px; border-radius: 10px; border: 1px solid #9c27b0;">
+                            <p style="font-weight: bold; color: #7b1fa2; margin-bottom: 8px;">YAML 格式：</p>
+                            <pre style="font-size: 12px; margin: 0; white-space: pre-wrap;">任務: 生成測驗題
+主題: 火星探測
+設定:
+  題數: 5
+  題型: 選擇題
+  難度: 中等
+  選項數: 4
+輸出要求:
+  - 正確答案
+  - 答案解析</pre>
+                        </div>
+                    </div>
+                </div>
+                <h3>何時使用 YAML 格式？</h3>
+                <div class="concept-grid">
+                    <div class="concept-card" style="background: linear-gradient(135deg, #e8f5e9, #c8e6c9);">
+                        <div class="icon">✅</div>
+                        <h4>適合使用</h4>
+                        <p style="font-size: 14px;">多個參數設定、複雜的條件組合、需要重複使用的模板</p>
+                    </div>
+                    <div class="concept-card" style="background: linear-gradient(135deg, #ffebee, #ffcdd2);">
+                        <div class="icon">❌</div>
+                        <h4>不需使用</h4>
+                        <p style="font-size: 14px;">簡單問答、單一指令、日常對話</p>
+                    </div>
+                </div>
+                <div class="step-box" style="background: linear-gradient(135deg, #fff3e0, #ffe0b2); border-left-color: #ff9800;">
+                    <h4 style="color: #e65100;">💡 注意事項</h4>
+                    <p>YAML 格式不是 NotebookLM 的官方功能，只是使用者發現的技巧。<strong>一般文字指令通常就夠用了</strong>，不需要刻意使用 YAML。當你的需求很複雜時，可以試試看 YAML 是否讓 AI 更好理解。</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: 數位平權完整應用 -->
         <div class="slide">
             <div class="content-card">
                 <h2>數位平權：NotebookLM 完整應用</h2>
@@ -402,7 +453,7 @@
             </div>
         </div>
 
-        <!-- Slide 9: 實作練習 -->
+        <!-- Slide 10: 實作練習 -->
         <div class="slide">
             <div class="content-card">
                 <h2>實作練習：進階應用</h2>
@@ -433,7 +484,7 @@
             </div>
         </div>
 
-        <!-- Slide 10: NotebookLM 總結 -->
+        <!-- Slide 11: NotebookLM 總結 -->
         <div class="slide">
             <div class="content-card">
                 <h2>NotebookLM 系列總結</h2>
@@ -471,7 +522,7 @@
     </div>
 
     <div class="slide-number">
-        <span id="currentSlide">1</span> / <span id="totalSlides">10</span>
+        <span id="currentSlide">1</span> / <span id="totalSlides">11</span>
     </div>
 
     <script>
