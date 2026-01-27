@@ -1113,8 +1113,80 @@ class HandTracker {
             </div>
         </div>
 
-        <!-- Slide 12: 練習與檢核 -->
+        <!-- Slide 12: 數位平權 - 無障礙互動設計 -->
         <div class="slide" id="slide12">
+            <h2 class="slide-title">♿ 數位平權：無障礙互動設計</h2>
+            <div class="slide-content">
+                <div class="highlight-box">
+                    <h3>通用設計原則</h3>
+                    <p>手勢追蹤是很酷的互動方式，但並非所有學生都能使用。<strong>肢體障礙</strong>、<strong>手部受傷</strong>或<strong>沒有攝影機</strong>的學生也應該能參與互動體驗。</p>
+                </div>
+
+                <h3 style="margin: 1.5rem 0 1rem; color: #81c784;">替代輸入方案</h3>
+                <div class="two-column">
+                    <div class="api-card" style="border-left: 4px solid #4caf50;">
+                        <h4 style="color: #81c784;">滑鼠/觸控替代</h4>
+                        <ul>
+                            <li>滑鼠移動模擬手部位置</li>
+                            <li>觸控螢幕直接互動</li>
+                            <li>無需攝影機或特殊硬體</li>
+                            <li>適合所有能力的學生</li>
+                        </ul>
+                    </div>
+                    <div class="api-card" style="border-left: 4px solid #4caf50;">
+                        <h4 style="color: #81c784;">鍵盤控制選項</h4>
+                        <ul>
+                            <li>方向鍵控制目標位置</li>
+                            <li>空白鍵切換互動模式</li>
+                            <li>適合使用輔助鍵盤的學生</li>
+                            <li>可自訂按鍵配置</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="code-block" data-lang="JavaScript">
+                    <button class="copy-btn" onclick="copyCode(this)">複製</button>
+                    <code>// 通用輸入處理器 - 支援手勢、滑鼠、觸控
+class UniversalInputHandler {
+    constructor(canvas) {
+        this.position = { x: 0, y: 0 };
+        this.inputMode = 'mouse'; // 'gesture' | 'mouse' | 'touch'
+
+        // 滑鼠替代方案
+        canvas.addEventListener('mousemove', (e) => {
+            if (this.inputMode === 'mouse') {
+                this.position = { x: e.offsetX, y: e.offsetY };
+            }
+        });
+
+        // 觸控替代方案
+        canvas.addEventListener('touchmove', (e) => {
+            const touch = e.touches[0];
+            this.position = { x: touch.clientX, y: touch.clientY };
+        });
+    }
+
+    // 切換輸入模式
+    setInputMode(mode) {
+        this.inputMode = mode;
+        console.log(`切換至 ${mode} 輸入模式`);
+    }
+}</code>
+                </div>
+
+                <div class="tip-box">
+                    <h4>💡 給教師的設計建議</h4>
+                    <ul>
+                        <li><strong>預設滑鼠模式</strong>：讓沒有攝影機的學生也能立即體驗</li>
+                        <li><strong>明顯的切換按鈕</strong>：讓學生自由選擇偏好的輸入方式</li>
+                        <li><strong>不強制使用手勢</strong>：避免讓無法使用手勢的學生感到被排斥</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 13: 練習與檢核 -->
+        <div class="slide" id="slide13">
             <h2 class="slide-title">✅ 練習與檢核</h2>
             <div class="slide-content">
                 <div class="highlight-box">
@@ -1183,7 +1255,7 @@ class HandTracker {
 
     <button class="nav-arrow prev-arrow" onclick="prevSlide()">◀</button>
     <button class="nav-arrow next-arrow" onclick="nextSlide()">▶</button>
-    <div class="slide-number"><span id="currentSlide">1</span> / <span id="totalSlides">12</span></div>
+    <div class="slide-number"><span id="currentSlide">1</span> / <span id="totalSlides">13</span></div>
 
     <script>
         let currentSlide = 0;

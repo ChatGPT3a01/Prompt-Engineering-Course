@@ -420,7 +420,48 @@ python3 -m http.server 8000</pre>
             </div>
         </div>
 
-        <!-- Slide 11 -->
+        <!-- Slide 11: 數位平權 -->
+        <div class="slide">
+            <div class="content-card">
+                <h2>數位平權：免費開源技術的教育意義</h2>
+                <div class="highlight-box">
+                    <h4>技術選型即是教育理念的實踐</h4>
+                    <p>本專案選用的每一項技術都是<strong>免費且開源</strong>的，這意味著無論是都市名校還是偏鄉小校，都能零成本導入這套互動教學系統。</p>
+                </div>
+                <h3>我們選用的免費技術</h3>
+                <div class="tech-grid">
+                    <div class="tech-card" style="border-top: 4px solid #4caf50;">
+                        <h4 style="color: #2e7d32;">MediaPipe Hands</h4>
+                        <p><strong>授權</strong>：Apache 2.0（免費商用）</p>
+                        <p><strong>來源</strong>：Google 開源專案</p>
+                        <p><strong>優勢</strong>：瀏覽器端運行，無需安裝</p>
+                    </div>
+                    <div class="tech-card" style="border-top: 4px solid #4caf50;">
+                        <h4 style="color: #2e7d32;">Canvas 2D API</h4>
+                        <p><strong>授權</strong>：瀏覽器原生 API</p>
+                        <p><strong>來源</strong>：W3C 標準</p>
+                        <p><strong>優勢</strong>：所有現代瀏覽器都支援</p>
+                    </div>
+                    <div class="tech-card" style="border-top: 4px solid #4caf50;">
+                        <h4 style="color: #2e7d32;">純前端架構</h4>
+                        <p><strong>成本</strong>：零伺服器費用</p>
+                        <p><strong>部署</strong>：GitHub Pages 免費託管</p>
+                        <p><strong>優勢</strong>：學生電腦直接開啟即可</p>
+                    </div>
+                </div>
+                <div class="practice-box" style="background: linear-gradient(135deg, #e8f5e9, #c8e6c9); border-color: #4caf50;">
+                    <h4 style="color: #2e7d32;">給偏鄉教師的建議</h4>
+                    <ul>
+                        <li><strong>硬體需求低</strong>：一般筆電內建攝影機即可，不需要額外購買設備</li>
+                        <li><strong>網路需求低</strong>：程式碼下載後可離線運行，只需首次載入 MediaPipe</li>
+                        <li><strong>維護成本零</strong>：純靜態網頁，無需維護伺服器或資料庫</li>
+                        <li><strong>跨平台支援</strong>：Windows、Mac、Chromebook 都能使用</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12 -->
         <div class="slide">
             <div class="content-card">
                 <h2>本節重點回顧</h2>
@@ -428,7 +469,7 @@ python3 -m http.server 8000</pre>
                     <div class="tech-card"><h4>專案介紹</h4><p>星海粒子互動系統的功能和特色</p></div>
                     <div class="tech-card"><h4>技術選型</h4><p>MediaPipe、Canvas 2D、單檔架構</p></div>
                     <div class="tech-card"><h4>架構設計</h4><p>模組劃分和資料流規劃</p></div>
-                    <div class="tech-card"><h4>AI 輔助</h4><p>分步驟請求、Debug 協助</p></div>
+                    <div class="tech-card" style="background: linear-gradient(135deg, #e8f5e9, #c8e6c9);"><h4 style="color: #2e7d32;">數位平權</h4><p>免費開源技術，偏鄉也能用</p></div>
                 </div>
                 <div class="highlight-box" style="margin-top: 30px;">
                     <h4>下一節預告</h4>
@@ -442,7 +483,7 @@ python3 -m http.server 8000</pre>
         </div>
     </div>
 
-    <div class="slide-number"><span id="currentSlide">1</span> / <span id="totalSlides">11</span></div>
+    <div class="slide-number"><span id="currentSlide">1</span> / <span id="totalSlides">12</span></div>
 
     <script>
         let currentSlide = 0; const slides = document.querySelectorAll('.slide'); const totalSlides = slides.length;

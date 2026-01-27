@@ -1339,8 +1339,45 @@ class ParticlePool {
             </div>
         </div>
 
-        <!-- Slide 12: 課程總結 -->
+        <!-- Slide 12: 數位平權 -->
         <div class="slide" id="slide12">
+            <h2 class="slide-title">🌈 數位平權：讓視覺效果人人可及</h2>
+            <div class="slide-content">
+                <div class="highlight-box">
+                    <h3>開放原始碼的教育價值</h3>
+                    <p>這整個互動專案使用的技術都是<strong>免費開源</strong>的。MediaPipe、Canvas API、JavaScript 都不需要任何費用，偏鄉學校也能導入！</p>
+                </div>
+
+                <div class="two-column">
+                    <div class="api-card" style="border-left: 4px solid #4caf50;">
+                        <h4 style="color: #81c784;">色盲友善設計</h4>
+                        <p>設計主題配色時，避免單純使用紅綠對比。可以：</p>
+                        <ul>
+                            <li>使用藍橙配色替代紅綠</li>
+                            <li>加入形狀或大小變化</li>
+                            <li>提供高對比度選項</li>
+                        </ul>
+                    </div>
+                    <div class="api-card" style="border-left: 4px solid #4caf50;">
+                        <h4 style="color: #81c784;">多元輸入支援</h4>
+                        <p>如同 5-2 所述，本專案支援：</p>
+                        <ul>
+                            <li>手勢追蹤（有攝影機）</li>
+                            <li>滑鼠/觸控（無攝影機）</li>
+                            <li>鍵盤控制（輔助需求）</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="tip-box">
+                    <h4>💡 給教師的提醒</h4>
+                    <p>分享這個專案給學生時，強調「技術是工具，創意才是核心」。即使沒有最新設備，也能運用免費資源創造精彩作品！</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 13: 課程總結 -->
+        <div class="slide" id="slide13">
             <h2 class="slide-title">🎓 課程總結</h2>
             <div class="slide-content">
                 <div class="complete-box">
@@ -1412,11 +1449,11 @@ class ParticlePool {
     <!-- 左右箭頭導航 -->
     <button class="nav-arrow prev-arrow" onclick="prevSlide()">◀</button>
     <button class="nav-arrow next-arrow" onclick="nextSlide()">▶</button>
-    <div class="slide-number"><span id="currentSlide">1</span> / <span id="totalSlides">12</span></div>
+    <div class="slide-number"><span id="currentSlide">1</span> / <span id="totalSlides">13</span></div>
 
     <script>
         let currentSlide = 1;
-        const totalSlides = 12;
+        const totalSlides = 13;
 
         function showSlide(n) {
             const slides = document.querySelectorAll('.slide');

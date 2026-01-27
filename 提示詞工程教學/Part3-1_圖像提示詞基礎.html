@@ -444,7 +444,7 @@
             <div class="content-card">
                 <h2>主流 AI 圖像生成工具</h2>
 
-                <div class="tool-comparison">
+                <div class="tool-comparison" style="grid-template-columns: repeat(4, 1fr);">
                     <div class="tool-card mj">
                         <h5>Midjourney</h5>
                         <p><strong>特色</strong>：藝術感強、風格獨特</p>
@@ -465,6 +465,13 @@
                         <p><strong>使用方式</strong>：本地或雲端</p>
                         <p><strong>適合</strong>：技術用戶、大量生成</p>
                         <p><strong>價格</strong>：免費（硬體成本）</p>
+                    </div>
+                    <div class="tool-card" style="background: linear-gradient(135deg, #e8f5e9, #c8e6c9); border-top: 4px solid #4caf50;">
+                        <h5 style="color: #2e7d32;">Nano Banana Pro</h5>
+                        <p><strong>特色</strong>：完全免費、無需註冊</p>
+                        <p><strong>使用方式</strong>：網頁直接使用</p>
+                        <p><strong>適合</strong>：教育現場、預算有限</p>
+                        <p><strong>價格</strong>：免費</p>
                     </div>
                 </div>
 
@@ -816,7 +823,56 @@ dark, gloomy (當你要明亮氛圍時)</pre>
             </div>
         </div>
 
-        <!-- Slide 11: 總結 -->
+        <!-- Slide 11: 數位平權 -->
+        <div class="slide">
+            <div class="content-card">
+                <h2>數位平權：AI 圖像生成的公平取用</h2>
+
+                <div class="highlight-box" style="background: linear-gradient(135deg, rgba(76, 175, 80, 0.15), rgba(139, 195, 74, 0.1)); border-left-color: #4caf50;">
+                    <h4 style="color: #2e7d32;">為什麼這很重要？</h4>
+                    <p>AI 圖像生成工具能為教學帶來豐富的視覺素材，但付費訂閱可能讓偏鄉學校、資源不足的教師無法使用。我們必須確保<strong>每位老師、每個學生</strong>都有機會運用這項技術。</p>
+                </div>
+
+                <h3>免費 AI 圖像工具推薦</h3>
+                <div class="element-grid">
+                    <div class="element-card" style="background: linear-gradient(135deg, #e8f5e9, #c8e6c9);">
+                        <h4 style="color: #2e7d32;">Nano Banana Pro</h4>
+                        <p>完全免費、無需註冊<br>網頁直接使用，適合教學</p>
+                    </div>
+                    <div class="element-card" style="background: linear-gradient(135deg, #e3f2fd, #bbdefb);">
+                        <h4 style="color: #1565c0;">Microsoft Designer</h4>
+                        <p>教育帳號免費使用<br>與 Office 整合佳</p>
+                    </div>
+                    <div class="element-card" style="background: linear-gradient(135deg, #fff3e0, #ffe0b2);">
+                        <h4 style="color: #e65100;">Canva AI</h4>
+                        <p>教育版免費<br>設計與圖像生成整合</p>
+                    </div>
+                    <div class="element-card" style="background: linear-gradient(135deg, #fce4ec, #f8bbd0);">
+                        <h4 style="color: #ad1457;">Playground AI</h4>
+                        <p>每日免費額度<br>品質不錯的選擇</p>
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <h4>偏鄉教學應用策略</h4>
+                    <pre>【情境】偏鄉國小自然課需要太空主題圖片
+
+【解決方案】
+1. 使用 Nano Banana Pro 或 Canva 教育版（免費）
+2. 一次生成多張圖片，建立素材庫重複使用
+3. 選擇簡單風格（卡通、插畫），生成效果穩定
+4. 將提示詞模板分享給其他偏鄉教師，擴大效益</pre>
+                    <button class="copy-btn" onclick="copyTemplate(this)">複製模板</button>
+                </div>
+
+                <div class="highlight-box">
+                    <h4>數位包容提醒</h4>
+                    <p>在使用 AI 生成圖像時，記得考慮：呈現多元族群（原住民、新住民）、避免刻板印象、製作無障礙素材（高對比、清晰構圖）。</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: 總結 -->
         <div class="slide">
             <div class="content-card">
                 <h2>本節重點回顧</h2>
@@ -834,9 +890,9 @@ dark, gloomy (當你要明亮氛圍時)</pre>
                         <h4>風格關鍵字</h4>
                         <p>媒材、藝術風格、時代類型</p>
                     </div>
-                    <div class="element-card">
-                        <h4>品質提升</h4>
-                        <p>解析度、渲染品質關鍵字</p>
+                    <div class="element-card" style="background: linear-gradient(135deg, #e8f5e9, #c8e6c9);">
+                        <h4 style="color: #2e7d32;">數位平權</h4>
+                        <p>免費工具、公平取用、無障礙</p>
                     </div>
                 </div>
 
@@ -859,7 +915,7 @@ dark, gloomy (當你要明亮氛圍時)</pre>
     </div>
 
     <div class="slide-number">
-        <span id="currentSlide">1</span> / <span id="totalSlides">11</span>
+        <span id="currentSlide">1</span> / <span id="totalSlides">12</span>
     </div>
 
     <script>
